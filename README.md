@@ -90,15 +90,14 @@ sudo apt-get install -y nodejs
 # Using `node -v` and `npm -v` to check whether the installation is successful.
 ```
 
-Ref: 
-https://www.runoob.com/nodejs/nodejs-install-setup.html.
-https://www.jianshu.com/p/50fb7228238b
+Reference [[1]](https://www.runoob.com/nodejs/nodejs-install-setup.html) [[2]](https://www.jianshu.com/p/50fb7228238b)
 
 
 ### Install Potree
 
 ```
-git clone https://github.com/potree/potree.git  # or download stable released version: potee-1.8-release
+git clone https://github.com/potree/potree.git  
+# or download stable released version: potree-1.8-release from github
 cd potree-1.8
 npm install  # Install dependencies, as specified in package.json, and create a build in ./build/potree.
 ```
@@ -121,10 +120,17 @@ cd ***/path/potree
 npm start &
 ```
 
-Then save it to the path: /etc/profile.d/，then reboot. Other self-starting setting methods can be seen [here](https://blog.51cto.com/u_14442495/2905438).
-  
-Factly the viewer link is `http://localhost:1234/examples/user_choosed_file_name.html`   
+Then save it to the folder: /etc/profile.d/，then reboot. 
+Factly the viewer link is like `http://localhost:1234/examples/choosed_file_name.html`.
 
+Other self-starting setting methods can be seen [here](https://blog.51cto.com/u_14442495/2905438).
+```
+Put self-starting script in /etc/rc.d/rc.local. (/etc/rc.local is the same as /etc/rc.d/rc.local),   
+e.g. `/mnt/npmstart.sh` at the end of the rc.local file.
+Reboot after adding the permission:
+chmod +x ***.sh
+chmod +x /etc/rc.d/rc.local
+```
 
 
 
@@ -157,7 +163,7 @@ sudo git clone https://github.com/potree/PotreeConverter.git
 For Ubuntu 18.04, we use docker to pack the PotreeConverter and call this docker for conversion.
 
 
-Ref: https://github.com/potree/PotreeConverter/issues/180
+Refere [here](https://github.com/potree/PotreeConverter/issues/180).
 
 
 
@@ -166,12 +172,12 @@ Ref: https://github.com/potree/PotreeConverter/issues/180
 
 By PotreeConverter, we will obtain the converted potree-format data, i.e., octree.bin, metadata.json and hierarchy.bin. Then, modify one of the examples (html files in Potree/examples/) with the relative path of metadata.json file, see [Potreeconverter](https://github.com/potree/PotreeConverter).
 
-Thus, we build a python file (`genhtml.py`) to automaticly generate the html files, and a shell script (`porun.sh`) to run the Potreeconverter in docker and genhtml function to produce the converted files and html files.
+Thus, we build a python file (`genhtml.py`) to automaticly generate the html files, and a shell script (`run.sh`) to run the Potreeconverter in docker and genhtml function to produce the converted files and html files.
 
 Usage:
 
 ```
-porun.sh: input point cloud data path, output results in potree-1.8/pointclouds
+run.sh: input point cloud data path, output results in potree-1.8/pointclouds
 ./potreeconvert/Potreeconverter input -o output
 genhtml.py: generate html into potree/dataview
 ```
@@ -196,7 +202,7 @@ Potree:
 
 ## Others
 
-In Windows, after install PotreeDesktop，potreeconvert may does not work, probably because of the lack of some dlls.
+In Windows, after install PotreeDesktop, potreeconvert may does not work, probably because of the lack of some dlls. Just download thses dlls.
 
 
 
