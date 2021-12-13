@@ -2,7 +2,7 @@
 
 - [Potree](https://github.com/potree/potree) is a free open-source WebGL based point cloud renderer for large point clouds.  
 - For own data, we should first convert it to potree-supported format, and then use Potree for rendering on WebGL.
-- This repo introduces how to convert common point cloud data and render it on webGL.
+- This repo introduces how to convert common point cloud data and render it on WebGL.
 
 Environments used: 
 - Ubuntu 20.04
