@@ -5,7 +5,7 @@
 - This repo introduces how to convert common point cloud data and render it on WebGL.
 
 Environments used: 
-- Ubuntu 20.04
+- Ubuntu 18.04/20.04.
 
 
 
