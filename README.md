@@ -4,9 +4,11 @@
 - For own data, we should first convert it to potree-supported format, and then use Potree for rendering on WebGL.
 - This repo introduces how to convert common point cloud data and render it on WebGL.
 
-Environments used: 
+Environments: 
 - Ubuntu 18.04/20.04.
-
+- Nodejs
+- Potree viewer
+- Potreeconvert
 
 
 ## Potree Installation
@@ -90,7 +92,7 @@ sudo apt-get install -y nodejs
 # Using `node -v` and `npm -v` to check whether the installation is successful.
 ```
 
-Reference [[1]](https://www.runoob.com/nodejs/nodejs-install-setup.html) [[2]](https://www.jianshu.com/p/50fb7228238b)
+Here we adopt the `apt` manner. Otehr details please refer to [[1]](https://www.runoob.com/nodejs/nodejs-install-setup.html), [[2]](https://www.jianshu.com/p/50fb7228238b).
 
 
 ### Install Potree
@@ -160,7 +162,7 @@ sudo git clone https://github.com/potree/PotreeConverter.git
     && make 
 ```
 
-For Ubuntu 18.04, we use docker to pack the PotreeConverter and call this docker for conversion.
+For Ubuntu 18.04, we use docker to pack the PotreeConverter and call this docker for conversion. This repo gives the `Dockerfile` of PotreeConverter.
 
 
 Refere [here](https://github.com/potree/PotreeConverter/issues/180).
@@ -170,16 +172,24 @@ Refere [here](https://github.com/potree/PotreeConverter/issues/180).
 
 ## Potreeconvert Plus
 
-By PotreeConverter, we will obtain the converted potree-format data, i.e., octree.bin, metadata.json and hierarchy.bin. Then, modify one of the examples (html files in Potree/examples/) with the relative path of metadata.json file, see [Potreeconverter](https://github.com/potree/PotreeConverter).
+By PotreeConverter, we will obtain the converted potree-format data, i.e., octree.bin, metadata.json and hierarchy.bin. Then, modify one of the examples (html files in Potree/examples/) with the your own path of metadata.json file, see [Potreeconverter](https://github.com/potree/PotreeConverter). Open this html by potree viewer to visulize the point cloud, such as `http://localhost:1234/examples/test.html`.
 
-Thus, we build a python file (`genhtml.py`) to automaticly generate the html files, and a shell script (`run.sh`) to run the Potreeconverter in docker and genhtml function to produce the converted files and html files.
+To generate it automatically, we build a python file (`genhtml.py`) to automaticly generate the html files, and a shell script (`run.sh`) to run the `PotreeConverter` and `genhtml` to produce the converted files and html files in docker.
 
-Usage:
+Files:
 
 ```
 run.sh: input point cloud data path, output results in potree-1.8/pointclouds
 ./potreeconvert/Potreeconverter input -o output
 genhtml.py: generate html into potree/dataview
+```
+
+Usage:
+For example, the .las for view is at: /home/pcloud/potree-1.8/data/test.las
+1) Build the docker: `sudo docker build -t potreetransform .`;
+2) Run the docker:
+```
+sudo docker run -it -v /home/pcloud/potree-1.8/data/:/usr/src/app/data/ -v /home/pcloud/potree-1.8/dataview/:/usr/src/app/dataview/ potreetransform /usr/src/app/run.sh test.las
 ```
 
 
@@ -189,11 +199,12 @@ file organization:
 ```
 Potree:
 ---- potree-1.8
-     ---- dataview
-     ---- pointclouds
----- potreeconvert
-     ---- genhtml.py
-     ---- porun.sh
+    ---- data
+    ---- dataview
+---- potreetransform
+    ---- PotreeConverter
+    ---- genhtml.py
+    ---- run.sh
 ---- Nodejs
 ```
 
