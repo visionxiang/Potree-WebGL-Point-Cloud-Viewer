@@ -92,7 +92,7 @@ sudo apt-get install -y nodejs
 # Using `node -v` and `npm -v` to check whether the installation is successful.
 ```
 
-Here we adopt the `apt` manner. Otehr details please refer to [[1]](https://www.runoob.com/nodejs/nodejs-install-setup.html), [[2]](https://www.jianshu.com/p/50fb7228238b).
+Here we adopt the `apt` manner. Other details please refer to [[1]](https://www.runoob.com/nodejs/nodejs-install-setup.html), [[2]](https://www.jianshu.com/p/50fb7228238b).
 
 
 ### Install Potree
