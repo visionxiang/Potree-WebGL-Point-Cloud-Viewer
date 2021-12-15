@@ -214,7 +214,7 @@ Potree:
 
 ## Others
 
-In Windows, after install PotreeDesktop, potreeconvert may does not work, probably because of the lack of some dlls. Just download thses dlls.
+In Windows, after install PotreeDesktop, potreeconvert may does not work, probably because of the lack of some dlls. Just download these dlls.
 
 
 
