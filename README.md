@@ -180,7 +180,7 @@ Files:
 
 ```
 run.sh: input point cloud data path, output results in potree-1.8/pointclouds
-./potreeconvert/Potreeconverter input -o output
+./potreeconvert/Potreeconverter input -o outputDir
 genhtml.py: generate html into potree/dataview
 ```
 
